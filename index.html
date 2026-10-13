@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101c35"><title>متجر الهواتف الذكي</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><div><div class="brand">متجر الهواتف الذكي</div><small>بيع وشراء الهواتف الجديدة والمستعملة</small></div><button id="accountBtn" class="outline">دخول / حساب جديد</button></header>
+<nav class="nav"><button data-view="home" class="active">الرئيسية</button><button data-view="sell">بيع هاتفك</button><button data-view="orders">طلباتي</button><button data-view="chat">تواصل معنا</button></nav>
+<main>
+<section id="home" class="view">
+<div class="hero"><div><span class="tag">اختيارك الذكي</span><h1>لقِ هاتفك الجاي</h1><p>اكتشف الهواتف، قارن الأسعار، واطلب مباشرة من المتجر.</p></div><div class="hero-icon">📱</div></div>
+<div class="toolbar"><input id="search" placeholder="ابحث بالماركة أو الموديل..."><button id="searchBtn">بحث</button></div>
+<div id="products" class="products"><p>جاري تحميل المنتجات...</p></div>
+</section>
+<section id="sell" class="view hidden"><div class="panel"><h2>اعرض هاتفك للبيع</h2><p>أرسل بيانات هاتفك لصاحب المتجر لمراجعتها والتواصل معك.</p>
+<form id="sellForm" class="form">
+<input name="brand" placeholder="الماركة، مثال: Samsung" required><input name="model" placeholder="الموديل" required>
+<textarea name="condition_details" placeholder="حالة الجهاز، السعة، الأعطال إن وجدت..." required></textarea>
+<input name="requested_price" type="number" min="0" placeholder="السعر المطلوب" required><input name="contact_phone" placeholder="رقم التواصل" required>
+<input name="image_url" placeholder="رابط صورة الهاتف (اختياري)"><button>إرسال العرض</button>
+</form><div id="sellResult"></div></div></section>
+<section id="orders" class="view hidden"><div class="panel"><h2>طلباتي</h2><button id="loadOrders">عرض الطلبات</button><div id="ordersResult"></div></div></section>
+<section id="chat" class="view hidden"><div class="panel"><h2>تواصل مع صاحب المتجر</h2><p>أرسل استفسارك وسيظهر لصاحب المتجر في صندوق الرسائل.</p><div id="messages" class="messages"></div><form id="chatForm" class="form inline"><input name="body" placeholder="اكتب رسالتك..." required maxlength="2000"><button>إرسال</button></form><div class="contact"><a id="whatsapp" target="_blank" rel="noopener">واتساب</a><a id="call">اتصال هاتفي</a></div></div></section>
+</main>
+<footer>© متجر الهواتف الذكي — جميع الأسعار بالعملة التي يحددها صاحب المتجر</footer>
+<dialog id="authDialog"><form id="authForm" class="form"><h2 id="authTitle">تسجيل الدخول</h2><input name="name" id="authName" placeholder="الاسم (للحساب الجديد)"><input name="phone" placeholder="رقم الهاتف" required><input name="password" type="password" placeholder="كلمة المرور (8 أحرف على الأقل)" required minlength="8"><div class="actions"><button type="submit">متابعة</button><button type="button" id="toggleAuth" class="outline">إنشاء حساب جديد</button><button type="button" id="closeAuth" class="outline">إغلاق</button></div><p id="authError"></p></form></dialog>
+<dialog id="checkoutDialog"><form id="checkoutForm" class="form"><h2>تأكيد الطلب</h2><input name="customer_name" placeholder="الاسم الكامل" required><input name="phone" placeholder="رقم الهاتف" required><textarea name="address" placeholder="عنوان التوصيل بالتفصيل" required></textarea><select name="payment_method"><option value="cash_on_delivery">الدفع عند الاستلام</option><option value="bank_transfer">تحويل بنكي / محفظة</option></select><textarea name="payment_note" placeholder="مرجع التحويل أو ملاحظة (اختياري)"></textarea><div class="actions"><button>تأكيد الطلب</button><button type="button" id="closeCheckout" class="outline">إلغاء</button></div><p id="checkoutResult"></p></form></dialog>
+<script src="/config.js"></script><script src="/app.js"></script>
+</body></html>

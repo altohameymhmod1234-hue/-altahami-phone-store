@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101c35"><title>لوحة إدارة متجر الهواتف</title>
+<link rel="stylesheet" href="/style.css">
+<style>
+.admin-wrap{max-width:1180px;margin:24px auto;padding:0 16px}.admin-hero{background:#101c35;color:#fff;padding:22px;border-radius:18px;display:flex;align-items:center;justify-content:space-between;gap:12px}.admin-hero h1{margin:0;color:#e8c36a}.admin-hero p{margin:5px 0 0;color:#dbe3ef}.admin-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.stat{background:#fff;border:1px solid #e6e9ef;border-radius:14px;padding:16px}.stat b{font-size:23px;display:block;color:#101c35}.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.admin-tabs button{background:#fff;border:1px solid #dce1e9;color:#101c35}.admin-tabs button.active{background:#101c35;color:white}.admin-section{background:#fff;border:1px solid #e6e9ef;border-radius:16px;padding:18px;margin-bottom:18px}.admin-section h2{margin-top:0}.admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admin-form .full{grid-column:1/-1}.admin-table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:680px}th,td{text-align:right;border-bottom:1px solid #e6e9ef;padding:11px 9px;font-size:14px;vertical-align:top}th{background:#f6f8fb}.small-btn{padding:6px 10px;font-size:12px;margin:2px}.status{display:inline-block;padding:3px 8px;border-radius:20px;background:#f1f3f7;font-size:12px}.admin-note{color:#687386;font-size:13px}.admin-error{color:#b42318}.admin-success{color:#14734b}.admin-hidden{display:none!important}.login-card{max-width:480px;margin:32px auto;background:#fff;border:1px solid #e6e9ef;border-radius:16px;padding:22px}.login-card .form{margin-top:14px}@media(max-width:750px){.admin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-hero{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="top"><div><div class="brand">إدارة متجر الهواتف</div><small>لوحة التحكم الخاصة بصاحب المتجر</small></div><a href="/" style="color:#e8c36a">العودة للمتجر ←</a></header>
+<main class="admin-wrap">
+<section id="loginBox" class="login-card"><h2>دخول صاحب المتجر</h2><p class="admin-note">استخدم حساباً تم منحه صلاحية admin في قاعدة البيانات.</p>
+<form id="loginForm" class="form"><input name="phone" placeholder="رقم الهاتف" required><input name="password" type="password" placeholder="كلمة المرور" required><button>تسجيل الدخول</button><p id="loginMsg"></p></form></section>
+<div id="dashboard" class="admin-hidden">
+<div class="admin-hero"><div><h1>مرحباً بك في لوحة الإدارة</h1><p>إدارة المنتجات والطلبات وعروض شراء الأجهزة ورسائل العملاء.</p></div><button id="logoutBtn" class="outline">تسجيل الخروج</button></div>
+<div class="admin-grid">
+<div class="stat"><span>المنتجات المعروضة</span><b id="statProducts">—</b></div>
+<div class="stat"><span>الطلبات</span><b id="statOrders">—</b></div>
+<div class="stat"><span>عروض شراء الأجهزة</span><b id="statOffers">—</b></div>
+<div class="stat"><span>رسائل العملاء</span><b id="statMessages">—</b></div>
+</div>
+<div class="admin-tabs">
+<button class="active" data-tab="productsPanel">المنتجات</button><button data-tab="ordersPanel">الطلبات</button><button data-tab="offersPanel">عروض الأجهزة المستعملة</button><button data-tab="messagesPanel">الرسائل</button><button data-tab="paymentsPanel">الدفع والتحويل</button>
+</div>
+<section id="productsPanel" class="admin-section">
+<h2>إضافة منتج جديد</h2>
+<form id="productForm" class="admin-form">
+<input name="title" placeholder="اسم المنتج" required><input name="brand" placeholder="الماركة" required>
+<input name="model" placeholder="الموديل" required><input name="price" type="number" min="0" placeholder="السعر" required>
+<select name="condition"><option value="new">جديد</option><option value="used">مستعمل</option></select><input name="storage" placeholder="السعة، مثال 128GB">
+<input name="quantity" type="number" min="0" value="1" placeholder="الكمية"><input name="image_url" placeholder="رابط صورة المنتج">
+<textarea name="description" class="full" placeholder="وصف ومواصفات الهاتف"></textarea>
+<button class="full">إضافة المنتج</button><p id="productMsg" class="full"></p>
+</form>
+<h2 style="margin-top:28px">المنتجات الحالية</h2><div id="productsTable" class="admin-table-wrap">جاري التحميل...</div>
+</section>
+<section id="ordersPanel" class="admin-section admin-hidden"><h2>إدارة الطلبات</h2><div id="ordersTable" class="admin-table-wrap">جاري التحميل...</div></section>
+<section id="offersPanel" class="admin-section admin-hidden"><h2>عروض بيع الهواتف من العملاء</h2><div id="offersTable" class="admin-table-wrap">جاري التحميل...</div></section>
+<section id="messagesPanel" class="admin-section admin-hidden"><h2>رسائل العملاء</h2><div id="messagesTable" class="admin-table-wrap">جاري التحميل...</div></section>
+<section id="paymentsPanel" class="admin-section admin-hidden"><h2>إعدادات التحويل البنكي أو المحفظة</h2><p class="admin-note">لا تفعّل التحويل إلا بعد إدخال بيانات حساب المتجر الرسمية والتحقق من التحويل يدوياً أو ربط مزود دفع معتمد.</p><div id="paymentsList">جاري التحميل...</div></section>
+<p id="globalMsg"></p>
+</div></main>
+<script src="/config.js"></script><script src="/admin.js"></script>
+</body></html>
